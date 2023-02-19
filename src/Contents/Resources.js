@@ -30,7 +30,7 @@ function Resources() {
     /*
     used axios to retrieve resources from the API, and then I used the resources parameter
     to retrieve information for a specific resource that the user had selected, also saving 
-    the data in resource detail, then letting showapp to false(meaning the user has clicked
+    the data in SetResourcesDetail, then letting showapp to false (meaning the user has clicked
     on view details) and adding the data into the setSortedData array.
     */
     const chooseResources = (resources) => {
@@ -60,7 +60,7 @@ function Resources() {
         Cost: 'asc'
     });
 
-    //keeps track of the sort order e.g., are we in asc order or desc
+    //keeps track of the sort order e.g., whether we are in asc or desc order
     const [sortedData, setSortedData] = useState(null);
 
 
@@ -121,7 +121,7 @@ function Resources() {
                     <h2>{selectedResources}</h2>
                     <button className='btn' onClick={goBack}>Go Back</button>
 
-                    {/* Show sorting buttons and application details */}
+                    {/* Show sorting buttons and resource details */}
                     {resourcesDetail && (
                         <>
                             <br />
@@ -132,6 +132,7 @@ function Resources() {
                             <button className='rbtn' onClick={sortByCost}>
                                 Sort by Cost ({sortOrder.Cost})
                             </button>
+
                             <pre>{JSON.stringify(resourcesDetail, null, 5)}</pre>
                         </>
                     )}

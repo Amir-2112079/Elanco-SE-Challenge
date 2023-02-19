@@ -17,6 +17,7 @@ function App() {
     <div>
       <Router>
         <NavBar />
+
         <Routes>
           <Route path='/Applications' element={<Applications />} />
           <Route path='/Resources' element={<Resources />} />

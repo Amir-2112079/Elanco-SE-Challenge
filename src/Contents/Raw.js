@@ -5,12 +5,12 @@ import axios from 'axios';
 function Raw() {
     //saves the data that is coming from the API
     const [, setData] = useState(null);
-    //adding the initial values for the sort functions
+    //adding the initial values for the sort function
     const [sortOrder, setSortOrder] = useState({
         ConsumedQuantity: 'asc',
         Cost: 'asc'
     });
-    //keeps track of the sort order e.g., are we in asc order or desc
+    //keeps track of the sort order e.g., whether we are in asc or desc order
     const [sortedData, setSortedData] = useState(null);
 
 
@@ -57,7 +57,7 @@ function Raw() {
             <button className='btn' onClick={handleButtonClick}>Load Raw Data</button>
 
             {sortedData && (
-                //if sortedData is true we are displaying  two buttons for each sorting functions 
+                //if sortedData is true we are displaying two buttons for each sorting functions 
                 //that has been defined above, else it's going to be null!
                 <>
                     <br />

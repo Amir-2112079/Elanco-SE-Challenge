@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom"
 function NavBar() {
     return (
         <nav>
-            <div id="title"> Elanco Test</div>
+            <div id="title"> Elanco SE Challenge</div>
 
             <div>
                 <ul id='navbar' >
@@ -19,11 +19,12 @@ function NavBar() {
         </nav>
     )
 }
-
+//NavItem that takes two props
+//to specifies the link it should go to and label specifies the text it should display
 function NavItem({ to, label }) {
     return (
         <li>
-            <NavLink to={to} activeClassName='active'>
+            <NavLink to={to}>
                 {label}
             </NavLink>
         </li>

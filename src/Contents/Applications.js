@@ -33,8 +33,8 @@ function Applications() {
     /*
     used axios to retrieve applications from the API, and then I used the application parameter to
     retrieve information for a specific application that the user had selected. 
-    also saving the data in application detail, then letting showapp to 
-    false(meaning the user has clicked on view details) and adding the data into
+    also saving the data in SetApplicationDetail, then letting showapp to 
+    false (meaning the user has clicked on view details) and adding the data into
     the setSortedData array to sort data.
     */
     const chooseApplication = (application) => {
@@ -63,7 +63,7 @@ function Applications() {
         ConsumedQuantity: 'asc',
         Cost: 'asc'
     });
-    //keeps track of the sort order e.g., are we in asc order or desc
+    //keeps track of the sort order e.g., whether we are in asc or desc order
     const [sortedData, setSortedData] = useState(null);
 
 
@@ -103,8 +103,8 @@ function Applications() {
                 </button>
             )}
 
-            {/* Show application list with details button. map is used to return the array. {application}{" "} 
-            allows to display applications followed by a space character.*/}
+            {/* Show application list with details button. .map is used to return the array. 
+            {application}{" "} allows to display applications followed by a space character.*/}
             {showApp && (
                 <ul>
                     {applications.map((application) => (

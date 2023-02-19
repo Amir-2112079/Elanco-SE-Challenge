@@ -1,1 +1,0 @@
-# Elanco-SE-Challenge

@@ -1,0 +1,21 @@
+.main {
+    background-color: #0c4897b7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.rbtn {
+    width: 33%;
+    height: 20px;
+    margin-top: 10px;
+    margin-left: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg,
+            rgb(39, 176, 255) 0%,
+            rgb(0, 232, 236) 100%);
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+}

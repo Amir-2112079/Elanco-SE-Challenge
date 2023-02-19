@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function Raw() {
     //saves the data that is coming from the API
-    const [data, setData] = useState(null);
+    const [, setData] = useState(null);
     //adding the initial values for the sort functions
     const [sortOrder, setSortOrder] = useState({
         ConsumedQuantity: 'asc',
@@ -25,6 +25,7 @@ function Raw() {
             })
     };
 
+
     const sortByConsumedQuantity = () => {
         //to display to the users that what order their on 
         const order = sortOrder.ConsumedQuantity === 'asc' ? 'desc' : 'asc';
@@ -38,6 +39,7 @@ function Raw() {
         setSortOrder({ ...sortOrder, ConsumedQuantity: order });
     };
 
+
     //same as the previous function
     const sortByCost = () => {
         const order = sortOrder.Cost === 'asc' ? 'desc' : 'asc';
@@ -49,13 +51,12 @@ function Raw() {
     };
 
 
-
     return (
         <div className='main'>
             <h1>Raw Data</h1>
-            <button className='rbtn' onClick={handleButtonClick}>Load Raw Data</button>
+            <button className='btn' onClick={handleButtonClick}>Load Raw Data</button>
 
-            {sortedData ? (
+            {sortedData && (
                 //if sortedData is true we are displaying  two buttons for each sorting functions 
                 //that has been defined above, else it's going to be null!
                 <>
@@ -63,13 +64,14 @@ function Raw() {
                     <button className='rbtn' onClick={sortByConsumedQuantity}>
                         Sort by ConsumedQuantity ({sortOrder.ConsumedQuantity})
                     </button>
+                    <br />
                     <button className='rbtn' onClick={sortByCost}>
                         Sort by Cost ({sortOrder.Cost})
                     </button>
 
                     <pre>{JSON.stringify(sortedData, null, 2)}</pre>
                 </>
-            ) : null}
+            )}
         </div>
     );
 }

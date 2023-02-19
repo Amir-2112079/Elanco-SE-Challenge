@@ -5,8 +5,6 @@ import axios from 'axios';
 
 
 function Applications() {
-    //whether the data is being loaded from the API or not 
-    const [loading, setLoading] = useState(false);
 
     //an array that returns the data from API 
     const [applications, setApplications] = useState([]);
@@ -32,10 +30,13 @@ function Applications() {
     };
 
 
-    //used axios to retrieve applications from the API, and then I used the application parameter to
-    // retrieve information for a specific application that the user had selected. 
-    // also saving the data in resource detail, then letting showapp to 
-    //false(meaning the user has clicked on view details) and adding the data into the setSortedData array to sort data. 
+    /*
+    used axios to retrieve applications from the API, and then I used the application parameter to
+    retrieve information for a specific application that the user had selected. 
+    also saving the data in application detail, then letting showapp to 
+    false(meaning the user has clicked on view details) and adding the data into
+    the setSortedData array to sort data.
+    */
     const chooseApplication = (application) => {
         setSelectedApplication(application);
         axios.get(`https://engineering-task.elancoapps.com/api/applications/${application}`)
@@ -95,50 +96,50 @@ function Applications() {
         <div className='main'>
             <h1>Applications</h1>
 
-            {/* Render a button to retrieve data from API if showApp is true */}
-            {showApp && <button className='btn' onClick={displayApplication}>Load Applications</button>}
+            {/* Render a button to retrieve data from API */}
+            {showApp && (
+                <button className='btn' onClick={displayApplication}>
+                    Load Applications
+                </button>
+            )}
 
-            {/* Renders a paragraph if loading is true */}
-            {loading ? <p>Loading...</p> :
+            {/* Show application list with details button. map is used to return the array. {application}{" "} 
+            allows to display applications followed by a space character.*/}
+            {showApp && (
+                <ul>
+                    {applications.map((application) => (
+                        <li>
+                            {application}{" "}
+                            <button className='btn' onClick={() => chooseApplication(application)}>
+                                View Details
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            )}
 
-                // Render a list of applications along with a button to see the details of each application
-                // The applications are displayed as a list wrapped around a "li"
-                // .map is used to iterate through the array
-                showApp ? (
-                    <ul>
-                        {applications.map((application) => (
-                            <li >
-                                {application}{" "}
-                                <button className='btn' onClick={() => chooseApplication(application)}>
-                                    View Details
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                ) :
+            {/* Show application details */}
+            {selectedApplication && (
+                <div>
+                    <h2>{selectedApplication}</h2>
+                    <button className='btn' onClick={goBack}>Go Back</button>
 
-                    // Display application information if applicationDetail is true
-                    // If loading is true, show a message to let the user know the application information is loading
-                    // If applicationDetail is false, show a message to let the user know to select an application
-                    <div>
-                        <h2>{selectedApplication}</h2>
-                        <button className='btn' onClick={goBack}>Go Back</button>
-                        {loading ? <p>Loading...</p> :
-                            applicationDetail ? (
-                                < >
-                                    <br />
-                                    <button className='rbtn' onClick={sortByConsumedQuantity}>
-                                        Sort by ConsumedQuantity ({sortOrder.ConsumedQuantity})
-                                    </button>
-                                    <br />
-                                    <button className='rbtn' onClick={sortByCost}>
-                                        Sort by Cost ({sortOrder.Cost})
-                                    </button>
-                                    <pre>{JSON.stringify(applicationDetail, null, 5)}</pre>
-                                </>
-                            ) : null}
-                    </div>
-            }
+                    {/* Show sorting buttons and application details */}
+                    {applicationDetail && (
+                        <>
+                            <br />
+                            <button className='rbtn' onClick={sortByConsumedQuantity}>
+                                Sort by ConsumedQuantity ({sortOrder.ConsumedQuantity})
+                            </button>
+                            <br />
+                            <button className='rbtn' onClick={sortByCost}>
+                                Sort by Cost ({sortOrder.Cost})
+                            </button>
+                            <pre>{JSON.stringify(applicationDetail, null, 5)}</pre>
+                        </>
+                    )}
+                </div>
+            )}
         </div >
     );
 }

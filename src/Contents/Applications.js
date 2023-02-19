@@ -101,6 +101,7 @@ function Applications() {
                 <button className='btn' onClick={displayApplication}>
                     Load Applications
                 </button>
+
             )}
 
             {/* Show application list with details button. .map is used to return the array. 
